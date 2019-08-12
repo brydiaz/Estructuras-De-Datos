@@ -3,17 +3,17 @@
 #include<stdlib.h>
 
 
-//Laboratorio #2 Listas simples y punteros by Bryan D�az
+//Laboratorio #2 Listas simples y punteros by Bryan Díaz
 
 //Autor del codigo:
-	//Bryan Andrey D�az Barrientos
+	//Bryan Andrey Díaz Barrientos
 	//Carnet: 2019264426
 	//Curso: Estructuras de Datos
 	//Profesora: MSc.Samanta Ramijan Carmion
 
 
 //Se crea una estructura que me permita acceder
-//a los estudiantes, adem�s debe contener un puntero
+//a los estudiantes, además debe contener un puntero
 //que me lleve a la siguiente
 
 typedef struct estudiante{
@@ -35,16 +35,17 @@ void NuevoEstudiante();
 void validar();
 
 //Esta estructura genera un nuevo estudiante
-// y lo logra a�adir a la lista *NOTA: NO HE LOGRADO
-//HACER QUE FUNCIONE CON M�S DE UN USO*
+// y lo logra añadir a la lista*
 
 void NuevoEstudiante() {
+	char nuevo_nombre[20];
 	int opcion;
 	estudiante *nuevo= (estudiante*) malloc	(sizeof(estudiante));
 	printf("Ingrese el carnet del estudiante\n");
 	scanf("%d",&nuevo->carnet);
 	printf("Ingrese el nombre del estudiante\n");
-	scanf("%s",nuevo->nombre);
+	scanf("%s",nuevo_nombre);
+	strcpy(nuevo_nombre, nuevo->nombre);
 
 	if (primero== NULL){
 		primero= nuevo;
@@ -56,15 +57,15 @@ void NuevoEstudiante() {
 		ultimo= nuevo;
 	}
 	printf("Estudiante ingresado con exito\n");
-	printf("Desea añadir otro?\n");
-	printf("Por favor solo use 1 para SÍ y 2 para NO\n");
+	printf("Desea incluir otro?\n");
+	printf("Por favor solo use 1 para Si y 2 para NO\n");
 	scanf("%d", &opcion);
 	if (opcion== 1){
 		NuevoEstudiante();
 	}else{
 
 		printf("Desea validar una posicion?\n");
-		printf("Por favor solo use 1 para SÍ y 2 para NO\n" );
+		printf("Por favor solo use 1 para Si y 2 para NO\n" );
 		scanf("%d", &opcion);
 		if (opcion== 1){
 			validar();
@@ -78,17 +79,14 @@ void NuevoEstudiante() {
 
 
 //Esta funcion funciona para poder validar que el dato
-//sea el mismo que su antecesor, al no poder en NuevoEstudiante
-// poder hacer que funcione m�s de un uso no puedo verificar
-// como aplicar la recursividad
-
+//sea el mismo que su antecesor.
 void validar(){
 	estudiante *actual=(estudiante*)malloc(sizeof(estudiante));
 	int posicion;
 	posicion=0;
 	actual= primero;
 	int *carnet_validar;
-	if (primero!= NULL){
+	while(primero!= NULL){
 		printf("Por favor digite el carnet en %d\n", posicion);
 		scanf("%d", &carnet_validar);
 		if (carnet_validar!= actual->carnet){
@@ -105,23 +103,22 @@ void validar(){
 		}
 
 
-	}else{
-		printf("Todas han sido validadas o la lista está vacía\n");
+	}
+		printf("Todas han sido validadas o la lista esta vacia\n");
 		printf("Gracias por usar\n");
 		exit(-1);
 		system("PAUSE");
 
 
 	}
-}
 
 //Funcion de main la cual llama a sus otras funciones
 
 int main(){
 	int opcion;
 	printf("Bienvenido\n");
-	printf("Desea añadir un estudiante?\n");
-	printf("Por favor solo use 1 para SÍ y 2 para NO\n");
+	printf("Desea incluir un estudiante?\n");
+	printf("Por favor solo use 1 para Si y 2 para NO\n");
 	scanf("%d", &opcion);
 	if (opcion==1){
 		NuevoEstudiante();
@@ -134,3 +131,4 @@ int main(){
 	}
 	return 0;
 }
+
